@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2CE94FE52A196247000C7E64 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94FE42A196247000C7E64 /* ImageDownloader.swift */; };
 		2CE94FED2A196295000C7E64 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94FEC2A196295000C7E64 /* Mappable.swift */; };
+		2CE94FF12A196AB7000C7E64 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94FF02A196AB7000C7E64 /* ListViewModel.swift */; };
 		710FC2FA2A02DBA000899EA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710FC2F92A02DBA000899EA2 /* AppDelegate.swift */; };
 		710FC2FC2A02DBA000899EA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710FC2FB2A02DBA000899EA2 /* SceneDelegate.swift */; };
 		710FC3032A02DBA100899EA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 710FC3022A02DBA100899EA2 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		2CE94FE42A196247000C7E64 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		2CE94FEC2A196295000C7E64 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		2CE94FF02A196AB7000C7E64 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		710FC2F62A02DBA000899EA2 /* onTopPoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onTopPoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		710FC2F92A02DBA000899EA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		710FC2FB2A02DBA000899EA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				710FC31C2A02DE4800899EA2 /* ListCell.swift */,
 				710FC31E2A02DE5700899EA2 /* ListViewController.swift */,
+				2CE94FF02A196AB7000C7E64 /* ListViewModel.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				710FC3132A02DDC600899EA2 /* RequestHandling.swift in Sources */,
 				710FC31A2A02DE2C00899EA2 /* SpeciesDetails.swift in Sources */,
+				2CE94FF12A196AB7000C7E64 /* ListViewModel.swift in Sources */,
 				710FC3182A02DE1F00899EA2 /* Species.swift in Sources */,
 				710FC3222A02DE7900899EA2 /* DetailsViewController.swift in Sources */,
 				710FC2FA2A02DBA000899EA2 /* AppDelegate.swift in Sources */,
