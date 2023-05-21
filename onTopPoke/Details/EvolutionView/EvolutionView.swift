@@ -29,6 +29,7 @@ class EvolutionView: UIView {
         
         label.font = .systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold)
         label.textColor = UIColor.black
+        label.textAlignment = .center
         label.numberOfLines = 1
         addSubview(label)
         
@@ -55,7 +56,7 @@ class EvolutionView: UIView {
     }
     
     func fill(name: String, url: String) {
-        label.text = name
+        label.text = name.capitalized
         ImageDownloader.shared.downloadImage(with: url, completionHandler: { image, cached in
             self.imageView.image = image
         }, placeholderImage: nil)

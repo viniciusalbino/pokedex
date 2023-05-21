@@ -31,7 +31,7 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        title = viewModel.currentSpecies?.name ?? ""
+        title = viewModel.currentSpecies?.name.capitalized ?? ""
         
         setupViews()
         loadDetails()
