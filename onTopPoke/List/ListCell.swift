@@ -3,9 +3,9 @@ import UIKit
 class ListCell: UITableViewCell {
     static let reuseIdentifier = "ListCell"
     
-    private var iconContainer: UIView = UIView(frame: .zero)
-    private var icon: UIImageView = UIImageView(frame: .zero)
-    private var titleLabel: UILabel = UILabel(frame: .zero)
+    var iconContainer: UIView = UIView(frame: .zero)
+    var icon: UIImageView = UIImageView(frame: .zero)
+    var titleLabel: UILabel = UILabel(frame: .zero)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -18,6 +18,11 @@ struct Species: Mappable {
         return nil
     }
     
+    init() {
+        self.name = ""
+        self.url = URL(string: "https://pokeapi.co/api/v2/")!
+    }
+    
     init(name: String, url: URL) {
         self.name = name
         self.url = url

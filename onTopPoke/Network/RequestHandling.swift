@@ -43,7 +43,7 @@ extension NetworkCoreResponse {
     }
 }
 
-enum NetworkCoreHandler {
+enum NetworkCoreHandler: Equatable {
     case success
     
     case error(NetworkCoreErrorType)

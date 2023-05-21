@@ -16,11 +16,11 @@ final class ListViewModel {
     private weak var delegate: ListViewModelDelegate?
     
     // MARK: - Properties
-    private var currentPage: Int = 1
-    private var totalPages: Int?
-    private var currentOffset: Int = 0
-    
-    private var species: [Species] = []
+    var currentPage: Int = 1
+    var totalPages: Int?
+    var currentOffset: Int = 0
+    let limit: Int = 20
+    var species: [Species] = []
     
     init(delegate: ListViewModelDelegate? = nil) {
         self.delegate = delegate
@@ -29,7 +29,7 @@ final class ListViewModel {
     func loadContent() {
         // check if the info is nil, so do the first load
         guard let totalPages = self.totalPages else {
-            self.loadpage(offset: currentOffset, limit: 20)
+            self.loadpage(offset: currentOffset, limit: limit)
             return
         }
         // check if the currentPage is different than the total pages, otherwise is the last page
@@ -39,11 +39,11 @@ final class ListViewModel {
         // check if the current page is less than the total pages, then load again
         if currentPage < totalPages {
             currentPage += 1
-            loadpage(offset: currentOffset, limit: 20)
+            loadpage(offset: currentOffset, limit: limit)
         }
     }
     
-    private func loadpage(offset: Int, limit: Int) {
+    func loadpage(offset: Int, limit: Int) {
         let network = NetworkCore()
         let api: APIRoute = .getSpeciesList(limit: limit, offset: offset)
         Task {
@@ -51,7 +51,7 @@ final class ListViewModel {
                 let response = try await network.request(for: api)
                 if let data = response.data <--> SpeciesResponse.self {
                     currentOffset += data.results.count
-                    totalPages = data.count / 20
+                    totalPages = data.count / self.limit
                     species.append(contentsOf: data.results)
                     delegate?.didFetchSpecies(response: data)
                 } else {
@@ -59,6 +59,7 @@ final class ListViewModel {
                 }
             }
             catch {
+                delegate?.errorFetchingSpecies()
                 print("TODO handle request handling failures failures")
             }
         }

@@ -14,6 +14,7 @@ class ListViewController: UIViewController {
     
     private lazy var viewModel: ListViewModel = ListViewModel(delegate: self)
     private var isLoading: Bool = false
+    private var indicator = UIActivityIndicatorView()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -43,10 +44,15 @@ class ListViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
+        indicator.style = UIActivityIndicatorView.Style.medium
+        indicator.center = self.view.center
+        view.addSubview(indicator)
     }
     
     private func loadContent() {
-        startLoading()
+        indicator.startAnimating()
         viewModel.loadContent()
         isLoading = true
     }
@@ -91,12 +97,14 @@ extension ListViewController: UITableViewDelegate {
 extension ListViewController: ListViewModelDelegate {
     func errorFetchingSpecies() {
         DispatchQueue.main.async { [self] in
+            self.indicator.startAnimating()
             self.showErrorAlert()
         }
     }
     
     internal func didFetchSpecies(response: SpeciesResponse) {
         DispatchQueue.main.async {
+            self.indicator.stopAnimating()
             self.tableView.reloadData()
             self.isLoading = false
         }

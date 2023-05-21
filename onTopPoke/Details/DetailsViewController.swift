@@ -8,7 +8,8 @@ import UIKit
 ///
 class DetailsViewController: UIViewController {
     
-    private lazy var viewModel: DetailsViewModel = DetailsViewModel(delegate: self)
+    lazy var viewModel: DetailsViewModel = DetailsViewModel(delegate: self)
+    var indicator = UIActivityIndicatorView()
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -47,12 +48,18 @@ class DetailsViewController: UIViewController {
             imageView.widthAnchor.constraint(equalToConstant: 150),
             imageView.heightAnchor.constraint(equalToConstant: 150)
         ])
+        
+        indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
+        indicator.style = UIActivityIndicatorView.Style.medium
+        indicator.center = self.view.center
+        view.addSubview(indicator)
     }
     
     private func loadDetails() {
         guard let species = viewModel.currentSpecies else {
             return
         }
+        indicator.startAnimating()
         ImageDownloader.shared.downloadImage(with: species.imageURL(), completionHandler: { image, cached in
             self.imageView.image = image
         }, placeholderImage: nil)
@@ -77,12 +84,14 @@ extension DetailsViewController: DetailsViewModelDelegate {
     func finishedFetchingChain(evolutionSpecies: Species) {
         DispatchQueue.main.async {
             self.setupEvolutionView(evolutionSpecies: evolutionSpecies)
+            self.indicator.stopAnimating()
         }
     }
     
     func errorFetchingSpecies() {
         DispatchQueue.main.async { [self] in
             self.showErrorAlert()
+            self.indicator.stopAnimating()
         }
     }
 }
